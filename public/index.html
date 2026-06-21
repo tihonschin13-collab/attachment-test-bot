@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Тест: Сексуальные предпочтения</title>
+    <title>Тест: Овечка, Девушка и Котёнок</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <style>
         * {
@@ -29,30 +29,38 @@
         .header {
             text-align: center;
             padding: 16px 0 20px;
-            border-bottom: 2px solid #ff6b6b;
+            border-bottom: 3px solid #8B7B6B;
             margin-bottom: 20px;
+            background: linear-gradient(135deg, #f5e6d3, #e8d5c4);
+            border-radius: 16px;
+            padding: 20px;
         }
         
         .header h1 {
-            font-size: 24px;
-            font-weight: 700;
-            color: #ff6b6b;
+            font-size: 26px;
+            font-weight: 800;
+            color: #5a3d2b;
         }
         
         .header .subtitle {
             font-size: 14px;
-            color: var(--tg-theme-hint-color, #7f8c8d);
+            color: #7a5d4b;
             margin-top: 4px;
+        }
+        
+        .header .emoji-line {
+            font-size: 32px;
+            margin: 8px 0;
         }
         
         .header .warning {
             font-size: 12px;
-            color: #ff6b6b;
-            margin-top: 8px;
-            background: rgba(255, 107, 107, 0.1);
-            padding: 6px 12px;
-            border-radius: 8px;
+            color: #8B7B6B;
+            background: rgba(139, 123, 107, 0.15);
+            padding: 4px 12px;
+            border-radius: 20px;
             display: inline-block;
+            margin-top: 6px;
         }
         
         .progress-bar {
@@ -66,7 +74,7 @@
         
         .progress-fill {
             height: 100%;
-            background: linear-gradient(90deg, #ff6b6b, #ff3366);
+            background: linear-gradient(90deg, #8B7B6B, #c4a88a);
             border-radius: 10px;
             transition: width 0.5s ease;
             width: 0%;
@@ -82,7 +90,7 @@
         
         .question-number {
             font-size: 13px;
-            color: #ff6b6b;
+            color: #8B7B6B;
             margin-bottom: 8px;
             display: block;
             font-weight: 600;
@@ -94,10 +102,15 @@
             line-height: 1.6;
             margin-bottom: 20px;
             color: var(--tg-theme-text-color, #000000);
-            padding: 12px;
+            padding: 16px;
             background: var(--tg-theme-secondary-bg-color, #f8f9fa);
             border-radius: 12px;
-            border-left: 4px solid #ff6b6b;
+            border-left: 4px solid #8B7B6B;
+        }
+        
+        .question-text .emoji {
+            font-size: 24px;
+            margin-right: 8px;
         }
         
         .options {
@@ -127,10 +140,10 @@
         }
         
         .option.selected {
-            border-color: #ff6b6b;
-            background: #ff6b6b;
+            border-color: #8B7B6B;
+            background: #8B7B6B;
             color: #ffffff;
-            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+            box-shadow: 0 4px 15px rgba(139, 123, 107, 0.3);
         }
         
         .option input[type="radio"] {
@@ -167,7 +180,7 @@
         }
         
         .btn-primary {
-            background: #ff6b6b;
+            background: #8B7B6B;
             color: #ffffff;
         }
         
@@ -189,7 +202,7 @@
         }
         
         .btn-success {
-            background: linear-gradient(90deg, #ff6b6b, #ff3366);
+            background: linear-gradient(90deg, #8B7B6B, #c4a88a);
             color: #ffffff;
         }
         
@@ -211,20 +224,41 @@
             text-align: center;
         }
         
+        .result-emoji {
+            font-size: 56px;
+            display: block;
+            margin: 8px 0;
+        }
+        
         .result-type {
             font-size: 26px;
             font-weight: 800;
-            margin: 16px 0 12px;
+            margin: 12px 0;
             padding: 16px;
             border-radius: 12px;
-            background: linear-gradient(90deg, #ff6b6b, #ff3366);
             color: #ffffff;
+        }
+        
+        .result-type.perfect {
+            background: linear-gradient(135deg, #2ecc71, #27ae60);
+        }
+        
+        .result-type.good {
+            background: linear-gradient(135deg, #f39c12, #e67e22);
+        }
+        
+        .result-type.challenging {
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+        }
+        
+        .result-type.chaos {
+            background: linear-gradient(135deg, #9b59b6, #8e44ad);
         }
         
         .result-subtitle {
             font-size: 16px;
             color: var(--tg-theme-hint-color, #7f8c8d);
-            margin-bottom: 16px;
+            margin-bottom: 12px;
         }
         
         .result-description {
@@ -235,13 +269,13 @@
             background: var(--tg-theme-secondary-bg-color, #f8f9fa);
             border-radius: 12px;
             text-align: left;
-            border-left: 4px solid #ff6b6b;
+            border-left: 4px solid #8B7B6B;
         }
         
         .score-bars {
             display: flex;
             flex-direction: column;
-            gap: 16px;
+            gap: 14px;
             margin: 16px 0;
         }
         
@@ -274,32 +308,32 @@
         }
         
         .traits {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
+            display: flex;
+            flex-wrap: wrap;
             gap: 8px;
-            margin: 16px 0;
+            justify-content: center;
+            margin: 12px 0;
         }
         
         .trait-tag {
-            padding: 8px 12px;
-            border-radius: 8px;
+            padding: 6px 14px;
+            border-radius: 20px;
             font-size: 13px;
             font-weight: 600;
-            text-align: center;
         }
         
         .trait-tag.high {
-            background: #ff6b6b;
+            background: #2ecc71;
             color: #ffffff;
         }
         
         .trait-tag.medium {
-            background: #ffd93d;
-            color: #333333;
+            background: #f39c12;
+            color: #ffffff;
         }
         
         .trait-tag.low {
-            background: #6bcbff;
+            background: #e74c3c;
             color: #ffffff;
         }
         
@@ -311,18 +345,15 @@
             border-top: 1px solid var(--tg-theme-secondary-bg-color, #ecf0f1);
         }
         
-        .result-emoji {
-            font-size: 48px;
-            display: block;
-            margin: 8px 0;
-        }
-        
         @media (max-width: 480px) {
-            .traits {
-                grid-template-columns: 1fr;
-            }
             .question-text {
                 font-size: 16px;
+            }
+            .header h1 {
+                font-size: 20px;
+            }
+            .header .emoji-line {
+                font-size: 24px;
             }
         }
     </style>
@@ -330,9 +361,10 @@
 <body>
     <div class="container" id="app">
         <div class="header">
-            <h1>🔥 Сексуальные предпочтения</h1>
-            <div class="subtitle">30 вопросов о ваших желаниях и предпочтениях</div>
-            <div class="warning">⚠️ Взрослый контент. Только для 18+</div>
+            <div class="emoji-line">🐑👩🐱</div>
+            <h1>Квартирный вопрос</h1>
+            <div class="subtitle">Смогу ли я ужиться с овечкой, девушкой и котёнком?</div>
+            <div class="warning">🎯 20 вопросов о вашей совместимости</div>
         </div>
 
         <div class="progress-bar">
@@ -340,7 +372,7 @@
         </div>
 
         <div class="question-container" id="questionContainer">
-            <span class="question-number" id="questionNumber">Вопрос 1/30</span>
+            <span class="question-number" id="questionNumber">Вопрос 1/20</span>
             <div class="question-text" id="questionText"></div>
             <div class="options" id="optionsContainer"></div>
             <div class="nav-buttons">
@@ -351,7 +383,7 @@
 
         <div class="results" id="resultsContainer">
             <div class="result-card">
-                <div class="result-emoji" id="resultEmoji">🔥</div>
+                <div class="result-emoji" id="resultEmoji">🐑</div>
                 <div class="result-type" id="resultType"></div>
                 <div class="result-subtitle" id="resultSubtitle"></div>
                 <div class="result-description" id="resultDescription"></div>
@@ -359,38 +391,38 @@
                 <div class="score-bars">
                     <div class="score-item">
                         <div class="score-label">
-                            <span>❤️ Романтика</span>
-                            <span id="romancePercent">0%</span>
+                            <span>🐑 Терпимость к овечке</span>
+                            <span id="sheepPercent">0%</span>
                         </div>
                         <div class="score-bar-bg">
-                            <div class="score-bar-fill" id="romanceBar" style="background: #ff6b6b;"></div>
+                            <div class="score-bar-fill" id="sheepBar" style="background: #8B7B6B;"></div>
                         </div>
                     </div>
                     <div class="score-item">
                         <div class="score-label">
-                            <span>🔥 Страсть</span>
-                            <span id="passionPercent">0%</span>
+                            <span>👩 Совместимость с девушкой</span>
+                            <span id="girlPercent">0%</span>
                         </div>
                         <div class="score-bar-bg">
-                            <div class="score-bar-fill" id="passionBar" style="background: #ff3366;"></div>
+                            <div class="score-bar-fill" id="girlBar" style="background: #e74c3c;"></div>
                         </div>
                     </div>
                     <div class="score-item">
                         <div class="score-label">
-                            <span>🕊️ Чувствительность</span>
-                            <span id="sensitivityPercent">0%</span>
+                            <span>🐱 Любовь к котёнку</span>
+                            <span id="catPercent">0%</span>
                         </div>
                         <div class="score-bar-bg">
-                            <div class="score-bar-fill" id="sensitivityBar" style="background: #ff8a5c;"></div>
+                            <div class="score-bar-fill" id="catBar" style="background: #f39c12;"></div>
                         </div>
                     </div>
                     <div class="score-item">
                         <div class="score-label">
-                            <span>🔮 Эксперименты</span>
-                            <span id="experimentPercent">0%</span>
+                            <span>🏠 Квартирный уют</span>
+                            <span id="homePercent">0%</span>
                         </div>
                         <div class="score-bar-bg">
-                            <div class="score-bar-fill" id="experimentBar" style="background: #a66bff;"></div>
+                            <div class="score-bar-fill" id="homeBar" style="background: #3498db;"></div>
                         </div>
                     </div>
                 </div>
@@ -408,74 +440,57 @@
         const tg = window.Telegram?.WebApp;
         if (tg) { tg.expand(); tg.ready(); }
 
-        // ===== ВОПРОСЫ (30 штук) =====
+        // ===== ВОПРОСЫ (20 штук) =====
         const questions = [
-            // Романтика (индексы 0-7)
-            "Мне важно чувствовать эмоциональную связь перед сексом.",
-            "Я люблю, когда партнер говорит мне ласковые слова.",
-            "Для меня важен поцелуй перед близостью.",
-            "Я предпочитаю заниматься любовью при свечах или в романтической обстановке.",
-            "Мне нравится, когда секс начинается с долгих объятий.",
-            "Я люблю смотреть в глаза партнеру во время секса.",
-            "Для меня важны нежные прикосновения и поглаживания.",
-            "Я ценю романтические жесты от партнера.",
+            // Овечка (0-4)
+            "🐑 Я готов(а) мириться с тем, что овечка будет есть мои цветы.",
+            "🐑 Меня не раздражает запах овечьей шерсти в квартире.",
+            "🐑 Я готов(а) убирать за овечкой каждый день.",
+            "🐑 Мне нравится, когда овечка блеет по утрам.",
+            "🐑 Я могу спокойно относиться к тому, что овечка жуёт мои книги.",
             
-            // Страсть (индексы 8-15)
-            "Мне нравится страстный и интенсивный секс.",
-            "Я люблю, когда все происходит быстро и спонтанно.",
-            "Я часто инициирую близость.",
-            "Мне нравится ощущать доминирование партнера (или доминировать).",
-            "Я люблю экспериментировать с громкостью и звуками.",
-            "Для меня важен физический контакт и близость тел.",
-            "Я люблю страстные поцелуи и укусы.",
-            "Мне нравится, когда секс длится долго.",
+            // Девушка (5-9)
+            "👩 Я готов(а) делить с девушкой одну ванную комнату.",
+            "👩 Меня устраивает, что девушка занимает много места в шкафу.",
+            "👩 Я люблю смотреть с девушкой её любимые сериалы.",
+            "👩 Мне нравится, когда девушка готовит и оставляет после себя беспорядок.",
+            "👩 Я готов(а) слушать её истории про овечку и котёнка.",
             
-            // Чувствительность (индексы 16-23)
-            "Мне важно, чтобы партнер был чутким к моим желаниям.",
-            "Я люблю, когда партнер медленно исследует мое тело.",
-            "Для меня важна атмосфера доверия и безопасности.",
-            "Я могу быть очень чувствительным(ой) к прикосновениям.",
-            "Мне нравится, когда партнер спрашивает, что мне нравится.",
-            "Я люблю легкие, почти невесомые прикосновения.",
-            "Для меня важна эмоциональная близость перед сексом.",
-            "Я чувствую себя комфортно, когда партнер учитывает мое настроение.",
+            // Котёнок (10-14)
+            "🐱 Я люблю, когда котёнок спит на моей подушке.",
+            "🐱 Меня не раздражает, когда котёнок точит когти о мебель.",
+            "🐱 Я готов(а) играть с котёнком в 3 часа ночи.",
+            "🐱 Мне нравится, когда котёнок прячется в моих вещах.",
+            "🐱 Я могу простить котёнку разбитую кружку.",
             
-            // Эксперименты (индексы 24-29)
-            "Мне нравится пробовать что-то новое в сексе.",
-            "Я открыт(а) к ролевым играм.",
-            "Мне интересны новые позиции и техники.",
-            "Я хочу попробовать игрушки или аксессуары.",
-            "Меня возбуждает мысль о сексе в необычных местах.",
-            "Мне нравится вносить элемент игры и фантазии в близость."
+            // Квартирный уют (15-19)
+            "🏠 Я готов(а) мириться с беспорядком от трёх существ.",
+            "🏠 Мне нравится, когда в квартире шумно и весело.",
+            "🏠 Я могу поделиться своим любимым креслом с кем-то ещё.",
+            "🏠 Меня не напрягает, что вещи постоянно не на своих местах.",
+            "🏠 Я люблю уют и готов(а) его создавать для всех."
         ];
 
         // ===== КЛЮЧ ПОДСЧЁТА =====
         const scoringKey = [
-            // Романтика (0-7)
-            [0, 'romance', false], [1, 'romance', false], [2, 'romance', false],
-            [3, 'romance', false], [4, 'romance', false], [5, 'romance', false],
-            [6, 'romance', false], [7, 'romance', false],
-            // Страсть (8-15)
-            [8, 'passion', false], [9, 'passion', false], [10, 'passion', false],
-            [11, 'passion', false], [12, 'passion', false], [13, 'passion', false],
-            [14, 'passion', false], [15, 'passion', false],
-            // Чувствительность (16-23)
-            [16, 'sensitivity', false], [17, 'sensitivity', false], [18, 'sensitivity', false],
-            [19, 'sensitivity', false], [20, 'sensitivity', false], [21, 'sensitivity', false],
-            [22, 'sensitivity', false], [23, 'sensitivity', false],
-            // Эксперименты (24-29)
-            [24, 'experiment', false], [25, 'experiment', false], [26, 'experiment', false],
-            [27, 'experiment', false], [28, 'experiment', false], [29, 'experiment', false]
+            [0, 'sheep', false], [1, 'sheep', false], [2, 'sheep', false],
+            [3, 'sheep', false], [4, 'sheep', false],
+            [5, 'girl', false], [6, 'girl', false], [7, 'girl', false],
+            [8, 'girl', false], [9, 'girl', false],
+            [10, 'cat', false], [11, 'cat', false], [12, 'cat', false],
+            [13, 'cat', false], [14, 'cat', false],
+            [15, 'home', false], [16, 'home', false], [17, 'home', false],
+            [18, 'home', false], [19, 'home', false]
         ];
 
         // ===== ВАРИАНТЫ ОТВЕТОВ =====
         const optionLabels = ['a', 'b', 'c', 'd', 'e'];
         const optionTexts = [
-            'Совершенно не согласен',
-            'Скорее не согласен',
-            'Нейтрально',
-            'Скорее согласен',
-            'Полностью согласен'
+            'Категорически нет! 😱',
+            'Скорее нет 😕',
+            'Ну, возможно... 🤔',
+            'Скорее да 😊',
+            'Да! С удовольствием ❤️'
         ];
         const optionValues = [1, 2, 3, 4, 5];
 
@@ -496,7 +511,7 @@
         // ===== ОТРИСОВКА ВОПРОСА =====
         function renderQuestion(index) {
             questionNumber.textContent = `Вопрос ${index + 1}/${questions.length}`;
-            questionText.textContent = questions[index];
+            questionText.innerHTML = `<span class="emoji">${questions[index].split(' ')[0]}</span> ${questions[index].substring(2)}`;
 
             let html = '';
             for (let i = 0; i < optionLabels.length; i++) {
@@ -581,98 +596,124 @@
             questionContainer.classList.add('hidden');
             resultsContainer.classList.add('active');
 
-            let romanceScore = 0, passionScore = 0, sensitivityScore = 0, experimentScore = 0;
-            let maxRomance = 0, maxPassion = 0, maxSensitivity = 0, maxExperiment = 0;
+            let sheepScore = 0, girlScore = 0, catScore = 0, homeScore = 0;
+            let maxSheep = 0, maxGirl = 0, maxCat = 0, maxHome = 0;
 
             for (let i = 0; i < scoringKey.length; i++) {
                 const [qIdx, scale, reversed] = scoringKey[i];
                 let raw = optionValues[answers[qIdx]];
                 if (reversed) raw = 6 - raw;
 
-                if (scale === 'romance') {
-                    romanceScore += raw;
-                    maxRomance += 5;
-                } else if (scale === 'passion') {
-                    passionScore += raw;
-                    maxPassion += 5;
-                } else if (scale === 'sensitivity') {
-                    sensitivityScore += raw;
-                    maxSensitivity += 5;
-                } else if (scale === 'experiment') {
-                    experimentScore += raw;
-                    maxExperiment += 5;
+                if (scale === 'sheep') {
+                    sheepScore += raw;
+                    maxSheep += 5;
+                } else if (scale === 'girl') {
+                    girlScore += raw;
+                    maxGirl += 5;
+                } else if (scale === 'cat') {
+                    catScore += raw;
+                    maxCat += 5;
+                } else if (scale === 'home') {
+                    homeScore += raw;
+                    maxHome += 5;
                 }
             }
 
-            const romancePercent = Math.round((romanceScore / maxRomance) * 100);
-            const passionPercent = Math.round((passionScore / maxPassion) * 100);
-            const sensitivityPercent = Math.round((sensitivityScore / maxSensitivity) * 100);
-            const experimentPercent = Math.round((experimentScore / maxExperiment) * 100);
+            const sheepPercent = Math.round((sheepScore / maxSheep) * 100);
+            const girlPercent = Math.round((girlScore / maxGirl) * 100);
+            const catPercent = Math.round((catScore / maxCat) * 100);
+            const homePercent = Math.round((homeScore / maxHome) * 100);
+
+            // Средний балл
+            const total = Math.round((sheepPercent + girlPercent + catPercent + homePercent) / 4);
 
             // ===== ОПРЕДЕЛЕНИЕ ТИПА =====
-            let type, emoji, subtitle, description;
-            
-            // Находим доминирующие шкалы
-            const scores = [
-                { name: 'Романтика', value: romancePercent },
-                { name: 'Страсть', value: passionPercent },
-                { name: 'Чувствительность', value: sensitivityPercent },
-                { name: 'Эксперименты', value: experimentPercent }
-            ];
-            scores.sort((a, b) => b.value - a.value);
-            const top = scores[0];
-            const second = scores[1];
+            let emoji, type, typeClass, subtitle, description;
 
-            const types = {
-                'Романтика': {
-                    emoji: '❤️',
-                    type: 'Романтический любовник',
-                    subtitle: 'Вы цените эмоциональную связь и нежность',
-                    description: 'Для вас секс — это продолжение эмоциональной близости. Вы любите долгие прелюдии, нежные слова и романтическую атмосферу. Вам важно чувствовать любовь и заботу партнера. Вы предпочитаете качество количеству, а каждое прикосновение должно быть наполнено смыслом. Идеальный вечер для вас — это свечи, музыка и долгие разговоры, переходящие в нежную близость.'
-                },
-                'Страсть': {
-                    emoji: '🔥',
-                    type: 'Страстный любовник',
-                    subtitle: 'Вы энергичны и любите интенсивность',
-                    description: 'Вы живете в моменте и отдаетесь страсти полностью. Вам нравится, когда секс спонтанный, интенсивный и захватывающий. Вы не боитесь инициировать и брать на себя инициативу. Для вас важен физический контакт, энергия и взаимное желание. Вы любите, когда все происходит быстро, горячо и оставляет яркие воспоминания. Спонтанность и новизна возбуждают вас.'
-                },
-                'Чувствительность': {
-                    emoji: '🕊️',
-                    type: 'Чувствительный любовник',
-                    subtitle: 'Вы тонко чувствуете партнера и свои ощущения',
-                    description: 'Вы обладаете высокой чувствительностью и эмпатией. Для вас важны прикосновения, атмосфера и эмоциональная безопасность. Вы умеете слушать свое тело и чувствовать желания партнера. Медленное исследование тела, легкие прикосновения и взаимное доверие — ваша стихия. Вы можете получить удовольствие даже от простого объятия, потому что для вас важна каждая деталь.'
-                },
-                'Эксперименты': {
-                    emoji: '🔮',
-                    type: 'Исследователь',
-                    subtitle: 'Вы открыты к новому и любите пробовать',
-                    description: 'Вы всегда ищете новые ощущения и не боитесь экспериментов. Вам интересно пробовать новые позиции, техники, игрушки и ролевые игры. Рутина утомляет вас, вы хотите удивлять и удивляться. Фантазия и игра — важная часть вашей сексуальной жизни. Вы с энтузиазмом относитесь к любым идеям партнера и сами предлагаете что-то новое. Для вас секс — это бесконечное поле для исследований.'
-                }
-            };
+            if (total >= 80) {
+                emoji = '🏡✨';
+                type = 'Семья мечты!';
+                typeClass = 'perfect';
+                subtitle = 'Вы настоящий герой квартиры!';
+                description = `
+                    🎉 Поздравляем! Вы готовы к жизни с овечкой, девушкой и котёнком!
 
-            const result = types[top.name];
-            emoji = result.emoji;
-            type = result.type;
-            subtitle = result.subtitle;
-            description = result.description;
+                    🐑 Овечка будет счастлива жевать ваши цветы (и книги).
+                    👩 Девушка оценит вашу готовность делить пространство.
+                    🐱 Котёнок будет спать на вашей подушке каждую ночь.
 
-            // Добавляем вторую черту
-            if (top.value > 70 && second.value > 50) {
-                description += `\n\n🔸 Также ярко выражена черта: **${second.name}**. Это делает вас многогранным любовником, способным сочетать разные подходы к близости.`;
+                    💪 У вас просто невероятная терпимость и любовь к уюту!
+                    Ваша квартира станет самым тёплым местом на планете.
+                    
+                    🌟 Совет: Купите побольше корма для всех троих!
+                `;
+            } else if (total >= 60) {
+                emoji = '😊👌';
+                type = 'Почти идеально!';
+                typeClass = 'good';
+                subtitle = 'У вас есть все шансы на успех!';
+                description = `
+                    🤗 Вы хорошо справитесь с этой необычной компанией!
+
+                    🐑 С овечкой у вас будет взаимопонимание (кроме цветов).
+                    👩 Девушка найдет в вас надёжного соседа.
+                    🐱 Котёнок оценит вашу мягкость (но кружку всё равно разобьёт).
+
+                    💡 Нужно немного привыкнуть к шуму и беспорядку.
+                    Но главное — у вас есть любовь и терпение!
+                    
+                    🌟 Совет: Купите пылесос мощнее!
+                `;
+            } else if (total >= 40) {
+                emoji = '😅🏠';
+                type = 'Будет сложно, но интересно!';
+                typeClass = 'challenging';
+                subtitle = 'Готовьтесь к приключениям!';
+                description = `
+                    😄 Жизнь с овечкой, девушкой и котёнком будет непростой!
+
+                    🐑 Овечка может съесть что-то важное.
+                    👩 Девушка займет всю ванную на час.
+                    🐱 Котёнок будет просыпаться в 5 утра.
+
+                    ❤️ Но если вы любите хаос и приключения — это ваш вариант!
+                    Главное — запастись юмором и терпением.
+                    
+                    🌟 Совет: Начните с малого — сначала заведите кактус!
+                `;
+            } else {
+                emoji = '🤯💨';
+                type = 'Тотальный хаос!';
+                typeClass = 'chaos';
+                subtitle = 'Бегите, пока не поздно!';
+                description = `
+                    😱 ВАС ЖДЁТ АПОКАЛИПСИС!
+
+                    🐑 Овечка съест вашу мебель.
+                    👩 Девушка заставит вас смотреть мыльные оперы.
+                    🐱 Котёнок превратит шторы в лоскуты.
+
+                    💔 Ваша квартира станет полем битвы!
+                    Спасайте свои вещи и нервы.
+
+                    🌟 Единственный выход: переезжать на необитаемый остров.
+                    Или купить беруши. И то, и другое!
+                `;
             }
 
             // ===== ЗАПОЛНЕНИЕ РЕЗУЛЬТАТОВ =====
             document.getElementById('resultEmoji').textContent = emoji;
             document.getElementById('resultType').textContent = type;
+            document.getElementById('resultType').className = 'result-type ' + typeClass;
             document.getElementById('resultSubtitle').textContent = subtitle;
             document.getElementById('resultDescription').textContent = description;
 
             // ===== БАРЫ =====
             const bars = [
-                { id: 'romanceBar', percentId: 'romancePercent', value: romancePercent },
-                { id: 'passionBar', percentId: 'passionPercent', value: passionPercent },
-                { id: 'sensitivityBar', percentId: 'sensitivityPercent', value: sensitivityPercent },
-                { id: 'experimentBar', percentId: 'experimentPercent', value: experimentPercent }
+                { id: 'sheepBar', percentId: 'sheepPercent', value: sheepPercent },
+                { id: 'girlBar', percentId: 'girlPercent', value: girlPercent },
+                { id: 'catBar', percentId: 'catPercent', value: catPercent },
+                { id: 'homeBar', percentId: 'homePercent', value: homePercent }
             ];
 
             setTimeout(() => {
@@ -684,34 +725,35 @@
 
             // ===== ТЕГИ ХАРАКТЕРИСТИК =====
             const traitsContainer = document.getElementById('traitsContainer');
-            const traitMap = {
-                'romance': { label: '❤️ Романтик', level: romancePercent },
-                'passion': { label: '🔥 Страстный', level: passionPercent },
-                'sensitivity': { label: '🕊️ Чуткий', level: sensitivityPercent },
-                'experiment': { label: '🔮 Новатор', level: experimentPercent }
-            };
+            const traitMap = [
+                { label: '🐑 Овечка', level: sheepPercent },
+                { label: '👩 Девушка', level: girlPercent },
+                { label: '🐱 Котёнок', level: catPercent },
+                { label: '🏠 Уют', level: homePercent }
+            ];
 
             let traitsHtml = '';
-            for (const [key, trait] of Object.entries(traitMap)) {
+            traitMap.forEach(trait => {
                 let levelClass = 'medium';
                 if (trait.level >= 70) levelClass = 'high';
                 else if (trait.level < 40) levelClass = 'low';
-                traitsHtml += `<div class="trait-tag ${levelClass}">${trait.label} (${trait.level}%)</div>`;
-            }
+                traitsHtml += `<span class="trait-tag ${levelClass}">${trait.label} (${trait.level}%)</span>`;
+            });
             traitsContainer.innerHTML = traitsHtml;
 
             // ===== СЫРЫЕ БАЛЛЫ =====
             document.getElementById('resultRaw').textContent = 
-                `Сырые баллы: Романтика=${romanceScore}/${maxRomance}, Страсть=${passionScore}/${maxPassion}, Чувствительность=${sensitivityScore}/${maxSensitivity}, Эксперименты=${experimentScore}/${maxExperiment}`;
+                `Общий уровень совместимости: ${total}% | 🐑=${sheepPercent}% 👩=${girlPercent}% 🐱=${catPercent}% 🏠=${homePercent}%`;
 
             // ===== ОТПРАВКА В TELEGRAM =====
             if (tg) {
                 tg.sendData(JSON.stringify({
                     type: type,
-                    romance: romancePercent,
-                    passion: passionPercent,
-                    sensitivity: sensitivityPercent,
-                    experiment: experimentPercent
+                    total: total,
+                    sheep: sheepPercent,
+                    girl: girlPercent,
+                    cat: catPercent,
+                    home: homePercent
                 }));
             }
         }
@@ -724,7 +766,7 @@
             resultsContainer.classList.remove('active');
             renderQuestion(0);
             updateProgress();
-            ['romanceBar', 'passionBar', 'sensitivityBar', 'experimentBar'].forEach(id => {
+            ['sheepBar', 'girlBar', 'catBar', 'homeBar'].forEach(id => {
                 document.getElementById(id).style.width = '0%';
             });
         }
