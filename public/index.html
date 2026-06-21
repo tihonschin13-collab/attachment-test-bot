@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Тест: Овечка, Девушка и Котёнок</title>
+    <title>❤️ Для Котёнка Толетоле</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <style>
         * {
@@ -14,424 +14,382 @@
         
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: var(--tg-theme-bg-color, #ffffff);
-            color: var(--tg-theme-text-color, #000000);
-            padding: 16px;
+            background: linear-gradient(135deg, #fff5f5 0%, #ffe8ec 50%, #ffdde1 100%);
             min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 16px;
             overflow-x: hidden;
         }
         
         .container {
-            max-width: 600px;
-            margin: 0 auto;
-        }
-        
-        .header {
-            text-align: center;
-            padding: 16px 0 20px;
-            border-bottom: 3px solid #8B7B6B;
-            margin-bottom: 20px;
-            background: linear-gradient(135deg, #f5e6d3, #e8d5c4);
-            border-radius: 16px;
-            padding: 20px;
-        }
-        
-        .header h1 {
-            font-size: 26px;
-            font-weight: 800;
-            color: #5a3d2b;
-        }
-        
-        .header .subtitle {
-            font-size: 14px;
-            color: #7a5d4b;
-            margin-top: 4px;
-        }
-        
-        .header .emoji-line {
-            font-size: 32px;
-            margin: 8px 0;
-        }
-        
-        .header .warning {
-            font-size: 12px;
-            color: #8B7B6B;
-            background: rgba(139, 123, 107, 0.15);
-            padding: 4px 12px;
-            border-radius: 20px;
-            display: inline-block;
-            margin-top: 6px;
-        }
-        
-        .progress-bar {
+            max-width: 500px;
             width: 100%;
-            height: 8px;
-            background: var(--tg-theme-secondary-bg-color, #ecf0f1);
-            border-radius: 10px;
-            margin-bottom: 24px;
-            overflow: hidden;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(20px);
+            border-radius: 40px;
+            padding: 30px 24px;
+            box-shadow: 0 20px 60px rgba(255, 107, 107, 0.2);
+            position: relative;
+            border: 2px solid rgba(255, 182, 193, 0.5);
+            text-align: center;
+            animation: float 3s ease-in-out infinite;
         }
         
-        .progress-fill {
-            height: 100%;
-            background: linear-gradient(90deg, #8B7B6B, #c4a88a);
-            border-radius: 10px;
-            transition: width 0.5s ease;
-            width: 0%;
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
         }
         
-        .question-container {
-            display: block;
-        }
-        
-        .question-container.hidden {
-            display: none;
-        }
-        
-        .question-number {
-            font-size: 13px;
-            color: #8B7B6B;
+        .header-emoji {
+            font-size: 64px;
             margin-bottom: 8px;
             display: block;
-            font-weight: 600;
+            animation: bounce 2s ease-in-out infinite;
         }
         
-        .question-text {
+        @keyframes bounce {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        
+        .title {
+            font-size: 28px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #ff6b6b, #ee5a24, #ff6b6b);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradient 3s ease infinite;
+            margin-bottom: 4px;
+        }
+        
+        @keyframes gradient {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+        
+        .subtitle {
             font-size: 18px;
-            font-weight: 600;
-            line-height: 1.6;
+            color: #e17055;
             margin-bottom: 20px;
-            color: var(--tg-theme-text-color, #000000);
-            padding: 16px;
-            background: var(--tg-theme-secondary-bg-color, #f8f9fa);
-            border-radius: 12px;
-            border-left: 4px solid #8B7B6B;
+            font-weight: 600;
         }
         
-        .question-text .emoji {
+        .heart-divider {
             font-size: 24px;
-            margin-right: 8px;
+            margin: 8px 0 16px;
+            color: #ff6b6b;
         }
         
-        .options {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            margin-bottom: 24px;
+        .message-box {
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 24px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(255, 182, 193, 0.3);
+            position: relative;
         }
         
-        .option {
-            display: flex;
-            align-items: center;
-            padding: 14px 16px;
-            background: var(--tg-theme-secondary-bg-color, #f8f9fa);
-            border: 2px solid transparent;
-            border-radius: 12px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 15px;
-            color: var(--tg-theme-text-color, #000000);
-            -webkit-tap-highlight-color: transparent;
-            user-select: none;
+        .message-box::before {
+            content: '"';
+            font-size: 48px;
+            color: #ff6b6b;
+            opacity: 0.3;
+            position: absolute;
+            top: -10px;
+            left: 16px;
         }
         
-        .option:active {
-            transform: scale(0.97);
+        .message-text {
+            font-size: 18px;
+            line-height: 1.8;
+            color: #2d3436;
+            font-style: italic;
+            padding: 8px 0;
         }
         
-        .option.selected {
-            border-color: #8B7B6B;
-            background: #8B7B6B;
-            color: #ffffff;
-            box-shadow: 0 4px 15px rgba(139, 123, 107, 0.3);
-        }
-        
-        .option input[type="radio"] {
-            display: none;
-        }
-        
-        .option-letter {
+        .message-text .highlight {
+            color: #ff6b6b;
             font-weight: 700;
-            margin-right: 12px;
-            min-width: 24px;
-            font-size: 14px;
+            font-style: normal;
         }
         
-        .nav-buttons {
+        .hearts-container {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin: 12px 0 20px;
+            font-size: 32px;
+        }
+        
+        .hearts-container span {
+            animation: heartbeat 1.5s ease-in-out infinite;
+        }
+        
+        .hearts-container span:nth-child(2) { animation-delay: 0.2s; }
+        .hearts-container span:nth-child(3) { animation-delay: 0.4s; }
+        .hearts-container span:nth-child(4) { animation-delay: 0.6s; }
+        .hearts-container span:nth-child(5) { animation-delay: 0.8s; }
+        .hearts-container span:nth-child(6) { animation-delay: 1.0s; }
+        
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            25% { transform: scale(1.2); }
+            50% { transform: scale(1); }
+            75% { transform: scale(1.1); }
+        }
+        
+        .button-box {
             display: flex;
             gap: 12px;
-            margin-top: 20px;
-        }
-        
-        .btn {
-            flex: 1;
-            padding: 14px;
-            border: none;
-            border-radius: 12px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            -webkit-tap-highlight-color: transparent;
-        }
-        
-        .btn:active {
-            transform: scale(0.96);
-        }
-        
-        .btn-primary {
-            background: #8B7B6B;
-            color: #ffffff;
-        }
-        
-        .btn-primary:disabled {
-            opacity: 0.4;
-            cursor: not-allowed;
-            transform: none;
-        }
-        
-        .btn-secondary {
-            background: var(--tg-theme-secondary-bg-color, #e9ecef);
-            color: var(--tg-theme-text-color, #000000);
-        }
-        
-        .btn-secondary:disabled {
-            opacity: 0.3;
-            cursor: not-allowed;
-            transform: none;
-        }
-        
-        .btn-success {
-            background: linear-gradient(90deg, #8B7B6B, #c4a88a);
-            color: #ffffff;
-        }
-        
-        .btn-restart {
-            background: var(--tg-theme-secondary-bg-color, #e9ecef);
-            color: var(--tg-theme-text-color, #000000);
-            margin-top: 16px;
-        }
-        
-        .results {
-            display: none;
-        }
-        
-        .results.active {
-            display: block;
-        }
-        
-        .result-card {
-            text-align: center;
-        }
-        
-        .result-emoji {
-            font-size: 56px;
-            display: block;
-            margin: 8px 0;
-        }
-        
-        .result-type {
-            font-size: 26px;
-            font-weight: 800;
-            margin: 12px 0;
-            padding: 16px;
-            border-radius: 12px;
-            color: #ffffff;
-        }
-        
-        .result-type.perfect {
-            background: linear-gradient(135deg, #2ecc71, #27ae60);
-        }
-        
-        .result-type.good {
-            background: linear-gradient(135deg, #f39c12, #e67e22);
-        }
-        
-        .result-type.challenging {
-            background: linear-gradient(135deg, #e74c3c, #c0392b);
-        }
-        
-        .result-type.chaos {
-            background: linear-gradient(135deg, #9b59b6, #8e44ad);
-        }
-        
-        .result-subtitle {
-            font-size: 16px;
-            color: var(--tg-theme-hint-color, #7f8c8d);
-            margin-bottom: 12px;
-        }
-        
-        .result-description {
-            font-size: 16px;
-            line-height: 1.8;
-            margin: 16px 0 20px;
-            padding: 20px;
-            background: var(--tg-theme-secondary-bg-color, #f8f9fa);
-            border-radius: 12px;
-            text-align: left;
-            border-left: 4px solid #8B7B6B;
-        }
-        
-        .score-bars {
-            display: flex;
-            flex-direction: column;
-            gap: 14px;
+            flex-wrap: wrap;
+            justify-content: center;
             margin: 16px 0;
         }
         
-        .score-item {
-            text-align: left;
+        .btn {
+            padding: 14px 28px;
+            border: none;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            -webkit-tap-highlight-color: transparent;
+            flex: 1;
+            min-width: 120px;
         }
         
-        .score-label {
-            display: flex;
-            justify-content: space-between;
-            font-weight: 600;
-            margin-bottom: 4px;
-            font-size: 14px;
-            color: var(--tg-theme-text-color, #000000);
+        .btn:active {
+            transform: scale(0.95);
         }
         
-        .score-bar-bg {
+        .btn-pink {
+            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+            color: white;
+            box-shadow: 0 4px 20px rgba(255, 107, 107, 0.4);
+        }
+        
+        .btn-pink:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(255, 107, 107, 0.5);
+        }
+        
+        .btn-soft {
+            background: rgba(255, 107, 107, 0.1);
+            color: #ff6b6b;
+            border: 2px solid rgba(255, 107, 107, 0.3);
+        }
+        
+        .btn-soft:hover {
+            background: rgba(255, 107, 107, 0.2);
+        }
+        
+        .hidden-message {
+            display: none;
+            margin-top: 20px;
+            padding: 20px;
+            background: linear-gradient(135deg, #ffdde1, #ffe8ec);
+            border-radius: 24px;
+            border: 2px solid #ff6b6b;
+            animation: fadeInUp 0.8s ease;
+        }
+        
+        .hidden-message.show {
+            display: block;
+        }
+        
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .hidden-message .big-emoji {
+            font-size: 52px;
+            display: block;
+            margin-bottom: 8px;
+        }
+        
+        .hidden-message h3 {
+            font-size: 22px;
+            color: #e17055;
+            margin-bottom: 8px;
+        }
+        
+        .hidden-message p {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #2d3436;
+        }
+        
+        .cat-paw {
+            font-size: 20px;
+            display: inline-block;
+            animation: walk 0.5s ease-in-out infinite alternate;
+        }
+        
+        @keyframes walk {
+            0% { transform: translateX(-5px) rotate(-5deg); }
+            100% { transform: translateX(5px) rotate(5deg); }
+        }
+        
+        .footer-text {
+            margin-top: 20px;
+            font-size: 13px;
+            color: #b2bec3;
+            letter-spacing: 1px;
+        }
+        
+        .footer-text span {
+            color: #ff6b6b;
+        }
+        
+        /* Снежинки/конфетти */
+        .confetti-container {
+            position: fixed;
+            top: 0;
+            left: 0;
             width: 100%;
-            height: 22px;
-            background: var(--tg-theme-secondary-bg-color, #ecf0f1);
-            border-radius: 10px;
+            height: 100%;
+            pointer-events: none;
+            z-index: 999;
             overflow: hidden;
         }
         
-        .score-bar-fill {
-            height: 100%;
-            border-radius: 10px;
-            transition: width 1.5s ease;
-            width: 0%;
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            border-radius: 2px;
+            animation: confettiFall linear infinite;
         }
         
-        .traits {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            justify-content: center;
-            margin: 12px 0;
+        @keyframes confettiFall {
+            0% {
+                opacity: 1;
+                transform: translateY(-100px) rotate(0deg);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(100vh) rotate(720deg);
+            }
         }
         
-        .trait-tag {
-            padding: 6px 14px;
-            border-radius: 20px;
-            font-size: 13px;
-            font-weight: 600;
+        /* Стикер-кот */
+        .cat-sticker {
+            font-size: 80px;
+            display: block;
+            margin: 4px auto;
+            animation: catWave 2s ease-in-out infinite;
         }
         
-        .trait-tag.high {
-            background: #2ecc71;
-            color: #ffffff;
-        }
-        
-        .trait-tag.medium {
-            background: #f39c12;
-            color: #ffffff;
-        }
-        
-        .trait-tag.low {
-            background: #e74c3c;
-            color: #ffffff;
-        }
-        
-        .result-raw {
-            font-size: 12px;
-            color: var(--tg-theme-hint-color, #7f8c8d);
-            margin-top: 12px;
-            padding-top: 12px;
-            border-top: 1px solid var(--tg-theme-secondary-bg-color, #ecf0f1);
+        @keyframes catWave {
+            0%, 100% { transform: rotate(0deg) scale(1); }
+            25% { transform: rotate(-10deg) scale(1.05); }
+            75% { transform: rotate(10deg) scale(1.05); }
         }
         
         @media (max-width: 480px) {
-            .question-text {
+            .container {
+                padding: 20px 16px;
+            }
+            .title {
+                font-size: 22px;
+            }
+            .message-text {
                 font-size: 16px;
             }
-            .header h1 {
-                font-size: 20px;
+            .header-emoji {
+                font-size: 48px;
             }
-            .header .emoji-line {
+            .hearts-container {
                 font-size: 24px;
+                gap: 8px;
+            }
+            .btn {
+                font-size: 14px;
+                padding: 12px 20px;
+                min-width: 100px;
             }
         }
     </style>
 </head>
 <body>
+    <!-- Конфетти -->
+    <div class="confetti-container" id="confettiContainer"></div>
+
     <div class="container" id="app">
-        <div class="header">
-            <div class="emoji-line">🐑👩🐱</div>
-            <h1>Квартирный вопрос</h1>
-            <div class="subtitle">Смогу ли я ужиться с овечкой, девушкой и котёнком?</div>
-            <div class="warning">🎯 20 вопросов о вашей совместимости</div>
-        </div>
-
-        <div class="progress-bar">
-            <div class="progress-fill" id="progressFill"></div>
-        </div>
-
-        <div class="question-container" id="questionContainer">
-            <span class="question-number" id="questionNumber">Вопрос 1/20</span>
-            <div class="question-text" id="questionText"></div>
-            <div class="options" id="optionsContainer"></div>
-            <div class="nav-buttons">
-                <button class="btn btn-secondary" id="prevBtn" disabled>Назад</button>
-                <button class="btn btn-primary" id="nextBtn">Далее →</button>
+        <!-- Главный кот -->
+        <span class="cat-sticker">🐱</span>
+        
+        <!-- Заголовок -->
+        <span class="header-emoji">💖</span>
+        <div class="title">Для Котёнка Толетоле</div>
+        <div class="subtitle">✨ Самой милой девочке на свете ✨</div>
+        
+        <div class="heart-divider">🌸 💕 🌸</div>
+        
+        <!-- Основное сообщение -->
+        <div class="message-box">
+            <div class="message-text">
+                Привет, моя <span class="highlight">маленькая кошечка</span>! 🐱<br><br>
+                Я хочу, чтобы ты знала: ты — <span class="highlight">самое дорогое</span>, что есть в моей жизни.<br><br>
+                Твоя улыбка согревает меня,<br>
+                твой смех — лучшая музыка,<br>
+                а твои глаза — <span class="highlight">целая вселенная</span> 💫<br><br>
+                <span class="highlight">Ты — мой Котёнок</span>, и я люблю тебя ❤️
             </div>
         </div>
-
-        <div class="results" id="resultsContainer">
-            <div class="result-card">
-                <div class="result-emoji" id="resultEmoji">🐑</div>
-                <div class="result-type" id="resultType"></div>
-                <div class="result-subtitle" id="resultSubtitle"></div>
-                <div class="result-description" id="resultDescription"></div>
-                
-                <div class="score-bars">
-                    <div class="score-item">
-                        <div class="score-label">
-                            <span>🐑 Терпимость к овечке</span>
-                            <span id="sheepPercent">0%</span>
-                        </div>
-                        <div class="score-bar-bg">
-                            <div class="score-bar-fill" id="sheepBar" style="background: #8B7B6B;"></div>
-                        </div>
-                    </div>
-                    <div class="score-item">
-                        <div class="score-label">
-                            <span>👩 Совместимость с девушкой</span>
-                            <span id="girlPercent">0%</span>
-                        </div>
-                        <div class="score-bar-bg">
-                            <div class="score-bar-fill" id="girlBar" style="background: #e74c3c;"></div>
-                        </div>
-                    </div>
-                    <div class="score-item">
-                        <div class="score-label">
-                            <span>🐱 Любовь к котёнку</span>
-                            <span id="catPercent">0%</span>
-                        </div>
-                        <div class="score-bar-bg">
-                            <div class="score-bar-fill" id="catBar" style="background: #f39c12;"></div>
-                        </div>
-                    </div>
-                    <div class="score-item">
-                        <div class="score-label">
-                            <span>🏠 Квартирный уют</span>
-                            <span id="homePercent">0%</span>
-                        </div>
-                        <div class="score-bar-bg">
-                            <div class="score-bar-fill" id="homeBar" style="background: #3498db;"></div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="traits" id="traitsContainer"></div>
-                
-                <div class="result-raw" id="resultRaw"></div>
-                <button class="btn btn-restart" onclick="restartTest()">🔄 Пройти заново</button>
-            </div>
+        
+        <!-- Летающие сердечки -->
+        <div class="hearts-container">
+            <span>💗</span>
+            <span>💖</span>
+            <span>💝</span>
+            <span>💘</span>
+            <span>💕</span>
+            <span>💗</span>
+        </div>
+        
+        <!-- Кнопки -->
+        <div class="button-box">
+            <button class="btn btn-pink" onclick="showSecret()">
+                🎁 Нажми сюда
+            </button>
+            <button class="btn btn-soft" onclick="createConfetti()">
+                ✨ Ещё раз
+            </button>
+        </div>
+        
+        <!-- Секретное сообщение -->
+        <div class="hidden-message" id="secretMessage">
+            <span class="big-emoji">🥰</span>
+            <h3>Ты — моё счастье!</h3>
+            <p>
+                <span class="cat-paw">🐾</span> Ты делаешь этот мир ярче своим присутствием.
+                Каждый день с тобой — праздник.<br><br>
+                <span class="cat-paw">🐾</span> Ты — самая добрая, самая нежная,
+                самая красивая девочка, которую я знаю.<br><br>
+                <span class="cat-paw">🐾</span> И я безумно рад, что ты есть в моей жизни.
+                <br><br>
+                <strong style="color: #ff6b6b;">Ты — мой любимый Котёнок Толетоле ❤️</strong>
+            </p>
+            <br>
+            <div style="font-size: 40px;">😻🐾💖</div>
+        </div>
+        
+        <!-- Футер -->
+        <div class="footer-text">
+            🌙 Сделано с любовью <span>❤️</span> для тебя
         </div>
     </div>
 
@@ -440,353 +398,57 @@
         const tg = window.Telegram?.WebApp;
         if (tg) { tg.expand(); tg.ready(); }
 
-        // ===== ВОПРОСЫ (20 штук) =====
-        const questions = [
-            // Овечка (0-4)
-            "🐑 Я готов(а) мириться с тем, что овечка будет есть мои цветы.",
-            "🐑 Меня не раздражает запах овечьей шерсти в квартире.",
-            "🐑 Я готов(а) убирать за овечкой каждый день.",
-            "🐑 Мне нравится, когда овечка блеет по утрам.",
-            "🐑 Я могу спокойно относиться к тому, что овечка жуёт мои книги.",
+        // ===== ПОКАЗ СЕКРЕТНОГО СООБЩЕНИЯ =====
+        function showSecret() {
+            const secret = document.getElementById('secretMessage');
+            secret.classList.toggle('show');
             
-            // Девушка (5-9)
-            "👩 Я готов(а) делить с девушкой одну ванную комнату.",
-            "👩 Меня устраивает, что девушка занимает много места в шкафу.",
-            "👩 Я люблю смотреть с девушкой её любимые сериалы.",
-            "👩 Мне нравится, когда девушка готовит и оставляет после себя беспорядок.",
-            "👩 Я готов(а) слушать её истории про овечку и котёнка.",
-            
-            // Котёнок (10-14)
-            "🐱 Я люблю, когда котёнок спит на моей подушке.",
-            "🐱 Меня не раздражает, когда котёнок точит когти о мебель.",
-            "🐱 Я готов(а) играть с котёнком в 3 часа ночи.",
-            "🐱 Мне нравится, когда котёнок прячется в моих вещах.",
-            "🐱 Я могу простить котёнку разбитую кружку.",
-            
-            // Квартирный уют (15-19)
-            "🏠 Я готов(а) мириться с беспорядком от трёх существ.",
-            "🏠 Мне нравится, когда в квартире шумно и весело.",
-            "🏠 Я могу поделиться своим любимым креслом с кем-то ещё.",
-            "🏠 Меня не напрягает, что вещи постоянно не на своих местах.",
-            "🏠 Я люблю уют и готов(а) его создавать для всех."
-        ];
-
-        // ===== КЛЮЧ ПОДСЧЁТА =====
-        const scoringKey = [
-            [0, 'sheep', false], [1, 'sheep', false], [2, 'sheep', false],
-            [3, 'sheep', false], [4, 'sheep', false],
-            [5, 'girl', false], [6, 'girl', false], [7, 'girl', false],
-            [8, 'girl', false], [9, 'girl', false],
-            [10, 'cat', false], [11, 'cat', false], [12, 'cat', false],
-            [13, 'cat', false], [14, 'cat', false],
-            [15, 'home', false], [16, 'home', false], [17, 'home', false],
-            [18, 'home', false], [19, 'home', false]
-        ];
-
-        // ===== ВАРИАНТЫ ОТВЕТОВ =====
-        const optionLabels = ['a', 'b', 'c', 'd', 'e'];
-        const optionTexts = [
-            'Категорически нет! 😱',
-            'Скорее нет 😕',
-            'Ну, возможно... 🤔',
-            'Скорее да 😊',
-            'Да! С удовольствием ❤️'
-        ];
-        const optionValues = [1, 2, 3, 4, 5];
-
-        // ===== СОСТОЯНИЕ =====
-        let currentQuestion = 0;
-        let answers = new Array(questions.length).fill(null);
-
-        // ===== DOM ЭЛЕМЕНТЫ =====
-        const questionContainer = document.getElementById('questionContainer');
-        const resultsContainer = document.getElementById('resultsContainer');
-        const questionNumber = document.getElementById('questionNumber');
-        const questionText = document.getElementById('questionText');
-        const optionsContainer = document.getElementById('optionsContainer');
-        const prevBtn = document.getElementById('prevBtn');
-        const nextBtn = document.getElementById('nextBtn');
-        const progressFill = document.getElementById('progressFill');
-
-        // ===== ОТРИСОВКА ВОПРОСА =====
-        function renderQuestion(index) {
-            questionNumber.textContent = `Вопрос ${index + 1}/${questions.length}`;
-            questionText.innerHTML = `<span class="emoji">${questions[index].split(' ')[0]}</span> ${questions[index].substring(2)}`;
-
-            let html = '';
-            for (let i = 0; i < optionLabels.length; i++) {
-                const isSelected = (answers[index] === i);
-                html += `
-                    <label class="option ${isSelected ? 'selected' : ''}" data-index="${i}">
-                        <input type="radio" name="question" value="${i}" ${isSelected ? 'checked' : ''}>
-                        <span class="option-letter">${optionLabels[i]})</span>
-                        ${optionTexts[i]}
-                    </label>
-                `;
-            }
-            optionsContainer.innerHTML = html;
-
-            document.querySelectorAll('.option').forEach(label => {
-                label.addEventListener('click', function(e) {
-                    if (e.target.type === 'radio') return;
-                    const radio = this.querySelector('input[type="radio"]');
-                    radio.checked = true;
-                    radio.dispatchEvent(new Event('change'));
-                });
-
-                const radio = label.querySelector('input[type="radio"]');
-                radio.addEventListener('change', function() {
-                    const idx = parseInt(this.value);
-                    answers[currentQuestion] = idx;
-                    document.querySelectorAll('.option').forEach(opt => opt.classList.remove('selected'));
-                    this.closest('.option').classList.add('selected');
-                    updateButtons();
-                    updateProgress();
-                    if (navigator.vibrate) navigator.vibrate(10);
-                });
-            });
-
-            updateButtons();
-            updateProgress();
-        }
-
-        // ===== ОБНОВЛЕНИЕ КНОПОК =====
-        function updateButtons() {
-            prevBtn.disabled = (currentQuestion === 0);
-
-            if (currentQuestion === questions.length - 1) {
-                const allAnswered = answers.every(a => a !== null);
-                nextBtn.textContent = allAnswered ? '📊 Узнать результат' : 'Далее →';
-                nextBtn.disabled = !allAnswered;
-                nextBtn.className = allAnswered ? 'btn btn-success' : 'btn btn-primary';
-            } else {
-                nextBtn.textContent = 'Далее →';
-                nextBtn.className = 'btn btn-primary';
-                nextBtn.disabled = (answers[currentQuestion] === null);
-            }
-        }
-
-        // ===== ОБНОВЛЕНИЕ ПРОГРЕССА =====
-        function updateProgress() {
-            const answered = answers.filter(a => a !== null).length;
-            progressFill.style.width = (answered / questions.length) * 100 + '%';
-        }
-
-        // ===== НАВИГАЦИЯ =====
-        function goToQuestion(index) {
-            if (index < 0 || index >= questions.length) return;
-            currentQuestion = index;
-            renderQuestion(index);
-        }
-
-        function nextQuestion() {
-            if (currentQuestion === questions.length - 1) {
-                if (answers.every(a => a !== null)) showResults();
-                return;
-            }
-            if (answers[currentQuestion] !== null) goToQuestion(currentQuestion + 1);
-        }
-
-        function prevQuestion() {
-            if (currentQuestion > 0) goToQuestion(currentQuestion - 1);
-        }
-
-        // ===== ПОКАЗ РЕЗУЛЬТАТОВ =====
-        function showResults() {
-            questionContainer.classList.add('hidden');
-            resultsContainer.classList.add('active');
-
-            let sheepScore = 0, girlScore = 0, catScore = 0, homeScore = 0;
-            let maxSheep = 0, maxGirl = 0, maxCat = 0, maxHome = 0;
-
-            for (let i = 0; i < scoringKey.length; i++) {
-                const [qIdx, scale, reversed] = scoringKey[i];
-                let raw = optionValues[answers[qIdx]];
-                if (reversed) raw = 6 - raw;
-
-                if (scale === 'sheep') {
-                    sheepScore += raw;
-                    maxSheep += 5;
-                } else if (scale === 'girl') {
-                    girlScore += raw;
-                    maxGirl += 5;
-                } else if (scale === 'cat') {
-                    catScore += raw;
-                    maxCat += 5;
-                } else if (scale === 'home') {
-                    homeScore += raw;
-                    maxHome += 5;
+            // Если показалось — запускаем конфетти
+            if (secret.classList.contains('show')) {
+                createConfetti();
+                // Отправляем в Telegram (если есть)
+                if (tg) {
+                    tg.sendData(JSON.stringify({
+                        action: '💖 Котёнок Толетоле нажала на сюрприз!',
+                        time: new Date().toLocaleString()
+                    }));
                 }
             }
+        }
 
-            const sheepPercent = Math.round((sheepScore / maxSheep) * 100);
-            const girlPercent = Math.round((girlScore / maxGirl) * 100);
-            const catPercent = Math.round((catScore / maxCat) * 100);
-            const homePercent = Math.round((homeScore / maxHome) * 100);
-
-            // Средний балл
-            const total = Math.round((sheepPercent + girlPercent + catPercent + homePercent) / 4);
-
-            // ===== ОПРЕДЕЛЕНИЕ ТИПА =====
-            let emoji, type, typeClass, subtitle, description;
-
-            if (total >= 80) {
-                emoji = '🏡✨';
-                type = 'Семья мечты!';
-                typeClass = 'perfect';
-                subtitle = 'Вы настоящий герой квартиры!';
-                description = `
-                    🎉 Поздравляем! Вы готовы к жизни с овечкой, девушкой и котёнком!
-
-                    🐑 Овечка будет счастлива жевать ваши цветы (и книги).
-                    👩 Девушка оценит вашу готовность делить пространство.
-                    🐱 Котёнок будет спать на вашей подушке каждую ночь.
-
-                    💪 У вас просто невероятная терпимость и любовь к уюту!
-                    Ваша квартира станет самым тёплым местом на планете.
-                    
-                    🌟 Совет: Купите побольше корма для всех троих!
-                `;
-            } else if (total >= 60) {
-                emoji = '😊👌';
-                type = 'Почти идеально!';
-                typeClass = 'good';
-                subtitle = 'У вас есть все шансы на успех!';
-                description = `
-                    🤗 Вы хорошо справитесь с этой необычной компанией!
-
-                    🐑 С овечкой у вас будет взаимопонимание (кроме цветов).
-                    👩 Девушка найдет в вас надёжного соседа.
-                    🐱 Котёнок оценит вашу мягкость (но кружку всё равно разобьёт).
-
-                    💡 Нужно немного привыкнуть к шуму и беспорядку.
-                    Но главное — у вас есть любовь и терпение!
-                    
-                    🌟 Совет: Купите пылесос мощнее!
-                `;
-            } else if (total >= 40) {
-                emoji = '😅🏠';
-                type = 'Будет сложно, но интересно!';
-                typeClass = 'challenging';
-                subtitle = 'Готовьтесь к приключениям!';
-                description = `
-                    😄 Жизнь с овечкой, девушкой и котёнком будет непростой!
-
-                    🐑 Овечка может съесть что-то важное.
-                    👩 Девушка займет всю ванную на час.
-                    🐱 Котёнок будет просыпаться в 5 утра.
-
-                    ❤️ Но если вы любите хаос и приключения — это ваш вариант!
-                    Главное — запастись юмором и терпением.
-                    
-                    🌟 Совет: Начните с малого — сначала заведите кактус!
-                `;
-            } else {
-                emoji = '🤯💨';
-                type = 'Тотальный хаос!';
-                typeClass = 'chaos';
-                subtitle = 'Бегите, пока не поздно!';
-                description = `
-                    😱 ВАС ЖДЁТ АПОКАЛИПСИС!
-
-                    🐑 Овечка съест вашу мебель.
-                    👩 Девушка заставит вас смотреть мыльные оперы.
-                    🐱 Котёнок превратит шторы в лоскуты.
-
-                    💔 Ваша квартира станет полем битвы!
-                    Спасайте свои вещи и нервы.
-
-                    🌟 Единственный выход: переезжать на необитаемый остров.
-                    Или купить беруши. И то, и другое!
-                `;
+        // ===== КОНФЕТТИ =====
+        function createConfetti() {
+            const container = document.getElementById('confettiContainer');
+            const colors = ['#ff6b6b', '#ff9ff3', '#feca57', '#ffd93d', '#ff8a5c', '#ff3366', '#ff6b9d', '#ff4757'];
+            
+            for (let i = 0; i < 50; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = Math.random() * 100 + '%';
+                confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.width = (Math.random() * 8 + 4) + 'px';
+                confetti.style.height = (Math.random() * 8 + 4) + 'px';
+                confetti.style.animationDuration = (Math.random() * 2 + 2) + 's';
+                confetti.style.animationDelay = (Math.random() * 2) + 's';
+                confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
+                container.appendChild(confetti);
             }
-
-            // ===== ЗАПОЛНЕНИЕ РЕЗУЛЬТАТОВ =====
-            document.getElementById('resultEmoji').textContent = emoji;
-            document.getElementById('resultType').textContent = type;
-            document.getElementById('resultType').className = 'result-type ' + typeClass;
-            document.getElementById('resultSubtitle').textContent = subtitle;
-            document.getElementById('resultDescription').textContent = description;
-
-            // ===== БАРЫ =====
-            const bars = [
-                { id: 'sheepBar', percentId: 'sheepPercent', value: sheepPercent },
-                { id: 'girlBar', percentId: 'girlPercent', value: girlPercent },
-                { id: 'catBar', percentId: 'catPercent', value: catPercent },
-                { id: 'homeBar', percentId: 'homePercent', value: homePercent }
-            ];
-
+            
+            // Автоочистка через 5 секунд
             setTimeout(() => {
-                bars.forEach(bar => {
-                    document.getElementById(bar.id).style.width = bar.value + '%';
-                    document.getElementById(bar.percentId).textContent = bar.value + '%';
-                });
-            }, 100);
-
-            // ===== ТЕГИ ХАРАКТЕРИСТИК =====
-            const traitsContainer = document.getElementById('traitsContainer');
-            const traitMap = [
-                { label: '🐑 Овечка', level: sheepPercent },
-                { label: '👩 Девушка', level: girlPercent },
-                { label: '🐱 Котёнок', level: catPercent },
-                { label: '🏠 Уют', level: homePercent }
-            ];
-
-            let traitsHtml = '';
-            traitMap.forEach(trait => {
-                let levelClass = 'medium';
-                if (trait.level >= 70) levelClass = 'high';
-                else if (trait.level < 40) levelClass = 'low';
-                traitsHtml += `<span class="trait-tag ${levelClass}">${trait.label} (${trait.level}%)</span>`;
-            });
-            traitsContainer.innerHTML = traitsHtml;
-
-            // ===== СЫРЫЕ БАЛЛЫ =====
-            document.getElementById('resultRaw').textContent = 
-                `Общий уровень совместимости: ${total}% | 🐑=${sheepPercent}% 👩=${girlPercent}% 🐱=${catPercent}% 🏠=${homePercent}%`;
-
-            // ===== ОТПРАВКА В TELEGRAM =====
-            if (tg) {
-                tg.sendData(JSON.stringify({
-                    type: type,
-                    total: total,
-                    sheep: sheepPercent,
-                    girl: girlPercent,
-                    cat: catPercent,
-                    home: homePercent
-                }));
-            }
+                container.innerHTML = '';
+            }, 5000);
         }
 
-        // ===== ПЕРЕЗАПУСК =====
-        function restartTest() {
-            answers = new Array(questions.length).fill(null);
-            currentQuestion = 0;
-            questionContainer.classList.remove('hidden');
-            resultsContainer.classList.remove('active');
-            renderQuestion(0);
-            updateProgress();
-            ['sheepBar', 'girlBar', 'catBar', 'homeBar'].forEach(id => {
-                document.getElementById(id).style.width = '0%';
-            });
-        }
+        // ===== КОНФЕТТИ ПРИ ЗАГРУЗКЕ =====
+        setTimeout(() => {
+            createConfetti();
+        }, 1000);
 
-        // ===== ОБРАБОТЧИКИ =====
-        prevBtn.addEventListener('click', prevQuestion);
-        nextBtn.addEventListener('click', nextQuestion);
-
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter' || e.key === 'ArrowRight') {
-                if (!nextBtn.disabled) nextBtn.click();
-            }
-            if (e.key === 'ArrowLeft') {
-                if (!prevBtn.disabled) prevBtn.click();
-            }
+        // ===== АВТОМАТИЧЕСКАЯ ВИБРАЦИЯ (если есть) =====
+        document.addEventListener('click', () => {
+            if (navigator.vibrate) navigator.vibrate(10);
         });
-
-        // ===== СТАРТ =====
-        renderQuestion(0);
-        updateProgress();
     </script>
 </body>
 </html>
